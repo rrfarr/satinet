@@ -14,6 +14,7 @@ Things to install
 
 ```console
 pip install progressist
+pip install rich
 ```
 
 # TODO List
