@@ -21,15 +21,16 @@ You can then access the virtual environment using
 source satinet-venv/bin/activate
 ```
 
-To install the dependencies you can run the following script using
+To install the dependencies you can run the install.sh bash script. However, before using it you need to set execute permission on your script using
 
 ```console
-source satinet-venv/bin/activate
+chmod +x script-name-here.sh
 ```
 
+Following this, you can execute the install.sh script using
 
 ```console
-pip install progressist
+./install.sh
 ```
 
 # TODO List
