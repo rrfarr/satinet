@@ -5,7 +5,7 @@ apply another CNN to estimate the confidence map which is then used to derive th
 gain of 4.5% in terms of completeness. A qualitative assessment reveals that the proposed method manages to generate DEMs with less noise. The proposed method adopts the architectured
 depicted in the figure below.
 
-![Semantic description of image](./Figures/diagram.png)*Diagram of the stereo matching method proposed by the SATINET project*
+![Diagram of the proposed method](./Figures/diagram.png)*Diagram of the stereo matching method proposed by the SATINET project*
 
 # Installation
 
