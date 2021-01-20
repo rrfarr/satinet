@@ -33,7 +33,7 @@ Following this, you can execute the install.sh script using
 ./install.sh
 ```
 # Documentation
-1.  Data Preparation
+1.  [Data Preparation](./Docs/Data-Preparation.md)
 2.  Training the MC-CNN Network
 3.  Training the LAF-NET Network
 4.  Stereo Matching
