@@ -21,7 +21,7 @@ The IARPA Multi-View Stereo 3D Mapping Challenge Dataset is hosted by SpaceNET o
 This can be downloaded using 
 
 ```console
-aws s3 ls s3://spacenet-dataset/mvs_dataset 
+aws s3 cp s3://spacenet-dataset/mvs_dataset  --recursive
 ```
 More information can be found on [SpaceNet](https://spacenetchallenge.github.io/datasets/mvs_summary.html).
 The [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/) must be installed with an active AWS account. Configure the AWS CLI using ‘aws configure’
