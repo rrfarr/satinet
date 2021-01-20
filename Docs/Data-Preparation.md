@@ -9,3 +9,8 @@ The following sections describe how to download and prepare both datasets.
 ## Middlebury Stereo Vision Dataset
 
 The Middelbury Stereo Vision Dataset can be downloaded usimg the following script
+
+```console
+python data_preparation.py -d md
+```
+which will download and unpack all the required data files that will be used in the training of the models developed in this project.
