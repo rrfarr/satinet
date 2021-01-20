@@ -24,7 +24,7 @@ source satinet-venv/bin/activate
 To install the dependencies you can run the install.sh bash script. However, before using it you need to set execute permission on your script using
 
 ```console
-chmod +x script-name-here.sh
+chmod +x install.sh
 ```
 
 Following this, you can execute the install.sh script using
