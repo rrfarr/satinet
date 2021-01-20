@@ -1,6 +1,10 @@
-"""
-    model training of MC-CNN
-"""
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+#  mccnn-train.py
+#  
+#  Developer Mang Chen, Reuben Farrugia
+
 import os
 import argparse
 import numpy as np
