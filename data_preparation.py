@@ -26,12 +26,12 @@ import urllib.request
 import os, ssl
 import zipfile
 from progressist import ProgressBar
-from rich.console import Console
 
 # Specify the parser that will be used to get information from the command line
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
                                  description="Script to be used to download and organize the datasets.")
-parser.add_argument("--dataset", type=str, required=True, help="The dataset to be downloaded. The supported datasets are i) md for the Middlebury Stereo Vision or ii) iarpa for the IARPA Challenge")
+parser.add_argument('-d', "--dataset", type=str, required=True, help="The dataset to be downloaded. The supported datasets are i) md for the Middlebury Stereo Vision or ii) iarpa for the IARPA Challenge")
+parser.add_argument('-l','--img_list', nargs='+',help='List of images to be downloaded from the iarpa', required=False) 
 
 def download_url(url, out_foldername):
     # This is to create an unverified context to download https
@@ -50,15 +50,12 @@ def unzip(filename,out_foldername):
 def main(args):
     # Retrieve the arguments inputted from CLI	
     args = parser.parse_args()
-    
-    console = Console()
-
-
+   
     if args.dataset == 'md':
-        console.print("Downloading the MiddEval3 dataset", style="bold green")
+        print("Downloading the MiddEval3 dataset")
 
         # Make sure there is a folder to contain the data
-        out_foldername = './data/'
+        out_foldername = './Data/'
         if not os.path.exists(out_foldername):
             os.makedirs(out_foldername)	
         #########################################################################################################
@@ -66,15 +63,15 @@ def main(args):
         #########################################################################################################
         
         # Download the MiddEval3-data-H.zip file
-        console.print('Downloading the MiddEval3-data-H.zip file')
+        print('Downloading the MiddEval3-data-H.zip file')
         download_url("https://vision.middlebury.edu/stereo/submit3/zip/MiddEval3-data-H.zip",out_foldername)
         
         # Download the MiddEval3-GT0-H.zip file
-        console.print('Downloading the MiddEval3-GT0-H.zip file')
+        print('Downloading the MiddEval3-GT0-H.zip file')
         download_url('https://vision.middlebury.edu/stereo/submit3/zip/MiddEval3-GT0-H.zip',out_foldername)
         
         # Download the MiddEval3-GT1-H.zip file
-        console.print('Downloading the MiddEval3-GT1-H.zip file')
+        print('Downloading the MiddEval3-GT1-H.zip file')
         download_url('https://vision.middlebury.edu/stereo/submit3/zip/MiddEval3-GT1-H.zip',out_foldername)
 
         #########################################################################################################
@@ -93,7 +90,30 @@ def main(args):
         os.remove(os.path.join(out_foldername,'MiddEval3-GT0-H.zip'))
         os.remove(os.path.join(out_foldername,'MiddEval3-GT1-H.zip'))
     elif args.dataset == 'iarpa':
-        console.print("Downloading the IARPA dataset", style="bold green")
+        print("Downloading the IARPA dataset")
+        # url where the iarpa data is stored
+        url_data = 'http://menthe.ovh.hw.ipol.im/IARPA_data/cloud_optimized_geotif/'
+        # Make sure there is a folder to contain the data
+        out_foldername = './Data/iarpa/'
+        if not os.path.exists(out_foldername):
+            os.makedirs(out_foldername)	
+        # Determine the number of images to be downloaded
+        for img_filename in args.img_list:
+            # Derive the path where we are going to save the data
+            out_filename = os.path.join(out_foldername, img_filename)
+            
+            if not os.path.exists(out_filename):
+                # Derive the url to be downloaded
+                url = os.path.join(url_data, img_filename)
+                # The file does not exist so we have to download it
+                print('Downloading file {}'.format(img_filename))
+                # Download the image
+                download_url(url, out_foldername)
+        
+    elif args.dataset == 'iarpa-all':
+        a = 1
+    else:
+        a = 1
         
         
         
