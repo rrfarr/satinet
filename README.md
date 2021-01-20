@@ -1,3 +1,9 @@
+# The SATINET project
+The SATINET project presents a deep learning based stereo-vision algorithm that was integrated within the Stereo Pipeline for Pushbroom Images (S2P) framework. The proposed stereo matching 
+method applies a siamese convolutional neural network (CNN) to construct a cost volume. A median filter is applied to every slice in the cost volume to enforce spatial smoothness. We then 
+apply another CNN to estimate the confidence map which is then used to derive the final disparity map. Simulation results on the IARPA dataset have shown that the proposed method achieves a 
+gain of 4.5% in terms of completeness. A qualitative assessment reveals that the proposed method manages to generate DEMs with less noise. 
+
 # Installation
 
 Set up a virtual environment
