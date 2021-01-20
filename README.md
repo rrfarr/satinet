@@ -9,17 +9,24 @@ depicted in the figure below.
 
 # Installation
 
-Set up a virtual environment
+To execute the software you need to install the virtual environment. The first step involves the creation of the virtual environment using
+
 ```console
 python3 -m venv satinet-venv
 ```
-Initialize the virtual environment using
+
+You can then access the virtual environment using
 
 ```console
 source satinet-venv/bin/activate
 ```
 
-Things to install
+To install the dependencies you can run the following script using
+
+```console
+source satinet-venv/bin/activate
+```
+
 
 ```console
 pip install progressist
