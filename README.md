@@ -32,6 +32,12 @@ Following this, you can execute the install.sh script using
 ```console
 ./install.sh
 ```
+# Documentation
+1.  Data Preparation
+2.  Training the MC-CNN Network
+3.  Training the LAF-NET Network
+4.  Stereo Matching
+5.  Evaluation
 
 # TODO List
 I need to fork to the s2p library from https://github.com/cmla/s2p.git - I need Johann's help on setting this up so that I can edit changes to the forked s2p repository.
