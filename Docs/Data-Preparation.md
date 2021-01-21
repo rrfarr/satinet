@@ -19,7 +19,13 @@ which will download and unpack all the required data files that will be used in 
 
 The IARPA Multi-View Stereo 3D Mapping Challenge Dataset is hosted by SpaceNET on Amazon Web Services (AWS).
 To do this first [create and activate a AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/?nc1=h_ls).
-The use IAM to [create a user with the access keys](https://aws.amazon.com/iam/faqs/). You can then check the information about the dataset using
+The use IAM to [create a user with the access keys](https://aws.amazon.com/iam/faqs/). You have to use 
+
+```console
+aws configure
+```
+to configure AWS using the Access key ID and Secret access key provided. If missing, use **us-east-1** as default region name and **json**
+as default output format. You can then check the information about the dataset using
 
 ```console
 aws s3 ls s3://spacenet-dataset/Hosted-Datasets/MVS_dataset/
