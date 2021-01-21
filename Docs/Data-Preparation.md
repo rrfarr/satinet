@@ -18,6 +18,8 @@ which will download and unpack all the required data files that will be used in 
 ## IARPA Multi-View Stereo 3D Mapping Challenge Dataset
 
 The IARPA Multi-View Stereo 3D Mapping Challenge Dataset is hosted by SpaceNET on Amazon Web Services (AWS).
+To do this first [create and activate a AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/?nc1=h_ls).
+
 This can be downloaded using 
 
 ```console
