@@ -33,6 +33,9 @@ aws s3 ls s3://spacenet-dataset/Hosted-Datasets/MVS_dataset/
 
 The dataset can then be downloaded using
 ```console
+cd Data/
+mkdir Iarpa
+cd Iarpa/
 aws s3 cp s3://spacenet-dataset/Hosted-Datasets/MVS_dataset ./ --recursive
 ```
 
