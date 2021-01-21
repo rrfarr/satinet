@@ -24,16 +24,14 @@ The use IAM to [create a user with the access keys](https://aws.amazon.com/iam/f
 ```console
 aws s3 ls s3://spacenet-dataset/Hosted-Datasets/MVS_dataset/
 ```
+
+The dataset can then be downloaded using
+```console
+aws s3 cp s3://spacenet-dataset/Hosted-Datasets/MVS_dataset/
+```
+
 More information can be found on [SpaceNet](https://spacenetchallenge.github.io/datasets/mvs_summary.html).
 The [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/) must be installed with an active AWS account. Configure the AWS CLI using ‘aws configure’
-
-This repository will provide access to the following data
-1.  Updated metric analysis software with examples from contest winners 
-2.  Challenge data package with instructions, cropped TIFF images, ground truth, image cropping software, and metric scoring software (1.2 GB) 
-3.  JHU/APL example MVS solution (451 MB) 
-4.  NITF panchromatic, multispectral, and short-wave infrared DigitalGlobe WorldView-3 satellite images (72.1 GB)
-5.  LAZ lidar point clouds with SBET (2.2 GB)
-6.  Spectral image calibration software (84 MB)
 
 Alternatively, the GEOTIFF files can be downloaded using the following script
 
