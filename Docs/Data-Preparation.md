@@ -33,8 +33,7 @@ aws s3 ls s3://spacenet-dataset/Hosted-Datasets/MVS_dataset/
 
 The dataset can then be downloaded using
 ```console
-aws s3 cp s3://spacenet-dataset/Hosted-Datasets/MVS_dataset/
-```
+aws s3 cp s3://spacenet-dataset/Hosted-Datasets/MVS_dataset ./ --recursive```
 
 More information can be found on [SpaceNet](https://spacenetchallenge.github.io/datasets/mvs_summary.html).
 The [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/) must be installed with an active AWS account. Configure the AWS CLI using ‘aws configure’
