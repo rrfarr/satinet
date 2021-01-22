@@ -17,30 +17,9 @@ which will download and unpack all the required data files that will be used in 
 
 ## IARPA Multi-View Stereo 3D Mapping Challenge Dataset
 
-The IARPA Multi-View Stereo 3D Mapping Challenge Dataset is hosted by SpaceNET on Amazon Web Services (AWS).
-To do this first [create and activate a AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/?nc1=h_ls).
-The use IAM to [create a user with the access keys](https://aws.amazon.com/iam/faqs/). You have to use 
-
-```console
-aws configure
-```
-to configure AWS using the Access key ID and Secret access key provided. If missing, use **us-east-1** as default region name and **json**
-as default output format. You can then check the information about the dataset using
-
-```console
-aws s3 ls s3://spacenet-dataset/Hosted-Datasets/MVS_dataset/
-```
-
-The dataset can then be downloaded using
-```console
-cd Data/
-mkdir Iarpa
-cd Iarpa/
-aws s3 cp s3://spacenet-dataset/Hosted-Datasets/MVS_dataset ./ --recursive
-```
-
-More information can be found on [SpaceNet](https://spacenetchallenge.github.io/datasets/mvs_summary.html).
-The [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/) must be installed with an active AWS account. Configure the AWS CLI using ‘aws configure’
+The IARPA Multi-View Stereo 3D Mapping Challenge Dataset which can be used during evaluation.
+Those in possession of a University of Malta IT Account can simply download this dataset from [here](https://drive.google.com/drive/folders/1kmMhlvmWa_MSMdpNyQxtH6qPQh6d9lyq?usp=sharing), unzip and
+copy the Iarpa folder withing the ./Data/ folder.
 
 Alternatively, the GEOTIFF files can be downloaded using the following script
 
