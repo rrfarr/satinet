@@ -40,5 +40,7 @@ Following this, you can execute the install.sh script using
 5.  Evaluation
 
 # TODO List
-I need to fork to the s2p library from https://github.com/cmla/s2p.git - I need Johann's help on setting this up so that I can edit changes to the forked s2p repository.
-I need to fork to the mccnn library from https://github.com/Jackie-Chou/MC-CNN-python.git - this needs to be extensively updated including the conversion from python2 to python3. Again I need Johann's help to setup the fork.
+
+1. I need to fork to the s2p library from https://github.com/cmla/s2p.git - I need Johann's help on setting this up so that I can edit changes to the forked s2p repository. 
+2. I need to fork to the mccnn library from https://github.com/Jackie-Chou/MC-CNN-python.git - this needs to be extensively updated including the conversion from python2 to python3. Again I need Johann's help to setup the fork.
+3. I need to zip the data (GEOTIFF, kml and LIDAR) on Google Drive and add sharable link from the Documentation
