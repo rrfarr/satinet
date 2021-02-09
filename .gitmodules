@@ -1,0 +1,3 @@
+[submodule "MC-CNN-python"]
+	path = MC-CNN-python
+	url = ssh://git@dsrg-ict.research.um.edu.mt:2222/jabriffa/MC-CNN-python.git
