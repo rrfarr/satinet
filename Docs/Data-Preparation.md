@@ -18,7 +18,7 @@ which will download and unpack all the required data files that will be used in 
 ## IARPA Multi-View Stereo 3D Mapping Challenge Dataset
 
 The IARPA Multi-View Stereo 3D Mapping Challenge Dataset which can be used during evaluation.
-Those in possession of a University of Malta IT Account can simply download this dataset from [here](https://drive.google.com/drive/folders/1kmMhlvmWa_MSMdpNyQxtH6qPQh6d9lyq?usp=sharing), unzip and 
+Those in possession of a University of Malta IT Account can simply download this dataset from [here](https://drive.google.com/file/d/1D3ssTwFW36XmdhVX6CHY7401jloKOmYF/view?usp=sharing), unzip and 
 copy the Iarpa folder withing the ./Data/ folder.
 Alternatively, the GEOTIFF files can be downloaded using the following script
 
