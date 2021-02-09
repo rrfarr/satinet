@@ -9,28 +9,22 @@ depicted in the figure below.
 
 # Installation
 
-To execute the software you need to install the virtual environment. The first step involves the creation of the virtual environment using
-
-```console
-python3 -m venv satinet-venv
-```
-
-You can then access the virtual environment using
-
-```console
-source satinet-venv/bin/activate
-```
-
-To install the dependencies you can run the install.sh bash script. However, before using it you need to set execute permission on your script using
-
-```console
-chmod +x install.sh
-```
-
-Following this, you can execute the install.sh script using
+To execute the software you need to install the virtual environment. This can be easily
+done using the following command
 
 ```console
 ./install.sh
+```
+This will install all the packages within the requirements.txt file.
+The virtual environment can then be activated using
+
+```console
+source venv/bin/activate
+```
+and can be deactivated using
+
+```console
+deactivate
 ```
 # Documentation
 1.  [Data Preparation](./Docs/Data-Preparation.md)
@@ -42,5 +36,4 @@ Following this, you can execute the install.sh script using
 # TODO List
 
 1. I need to fork to the s2p library from https://github.com/cmla/s2p.git - I need Johann's help on setting this up so that I can edit changes to the forked s2p repository. 
-2. I need to fork to the mccnn library from https://github.com/Jackie-Chou/MC-CNN-python.git - this needs to be extensively updated including the conversion from python2 to python3. Again I need Johann's help to setup the fork.
 3. I need to zip the data (GEOTIFF, kml and LIDAR) on Google Drive and add sharable link from the Documentation
