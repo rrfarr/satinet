@@ -1,0 +1,21 @@
+{
+    "train": [
+        "Playtable",
+        "Pipes",
+        "MotorcycleE",
+        "PianoL",
+        "PlaytableP",
+        "Shelves",
+        "Adirondack",
+        "Recycle",
+        "Vintage",
+        "ArtL"
+    ],
+    "val": [
+        "Teddy",
+        "Jadeplant",
+        "Motorcycle",
+        "Piano",
+        "Playroom"
+    ]
+}
