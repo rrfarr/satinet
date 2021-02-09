@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#
-#  mccnn-train.py
-#  
-#  Developer Mang Chen, Reuben Farrugia
-
+"""
+    model training of MC-CNN
+"""
 import os
 import argparse
 import numpy as np
 import tensorflow as tf
 from tqdm import tqdm
 from datetime import datetime
-from libmccnn.model import NET
-from libmccnn.datagenerator import ImageDataGenerator
+from LibMccnn.model import NET
+from LibMccnn.datagenerator import ImageDataGenerator
+import json
+
 #from datageneratorXY import ImageDataGenerator
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
@@ -31,7 +31,7 @@ parser.add_argument("--val_freq", type=int, default=1, help="model validation fr
 
 parser.add_argument("--start_epoch", type=int, default=0, help="start epoch for training(inclusive)")
 
-parser.add_argument("--end_epoch", type=int, default=140, help="end epoch for training(exclusive)")
+parser.add_argument("--end_epoch", type=int, default=1000, help="end epoch for training(exclusive)")
 
 parser.add_argument("--resume", type=str, default=None, help="path to checkpoint to resume from. \
                     if None(default), model is initialized using default methods, if = ../data/checkpoint(mbF), model is  initialized using middleberryfast methods")
@@ -40,10 +40,8 @@ parser.add_argument("--resume", type=str, default=None, help="path to checkpoint
 #parser.add_argument("--val_file", type=str, required=True, help="path to file containing validation \
 #                    left_image_list_file s, should be list_dir/train.txt(val.txt)")
 #parser.add_argument("--dataset",type=str,required=True,help="indicates the trainind data (mb or eo)")
-parser.add_argument("--dataset_foldername",type=str,required=True,help="folder path where the dataset is stored")
-parser.add_argument("--nchann",type=int,required=True,help="number of input channels")
-parser.add_argument("--radius",type=int,default=6,help="radius of the lbp feature")
-parser.add_argument('--model_foldername',type=str,required=True, help='output folder where the models will be stored')
+parser.add_argument('-m','--model_foldername',type=str,required=True, help='Output folder where the models will be stored')
+parser.add_argument('-d',"--dataset_foldername",type=str,required=False,help="folder path where the dataset is stored")
 
 def test_mkdir(path):
     if not os.path.isdir(path):
@@ -62,70 +60,57 @@ def update_filenames (train_file, dataset_foldername):
 
 def main():
     args = parser.parse_args()
-
+    
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
     
     ######################
     # directory preparation
-    filewriter_path = os.path.join(args.model_foldername, 'tensorboard') #'../model/tensorboard/MC-CNN/'
-    checkpoint_path = os.path.join(args.model_foldername, 'checkpoint')  #'../model/checkpoint/MC-CNN/'
- 
+    filewriter_path = os.path.join(args.model_foldername, 'tensorboard') 
+    checkpoint_path = os.path.join(args.model_foldername, 'checkpoint')  
+     
     test_mkdir(filewriter_path)
     test_mkdir(checkpoint_path)
-
+    
     ######################
     # model graph preparation
     patch_height = args.patch_size
     patch_width = args.patch_size
     batch_size = args.batch_size
-
-    ######################
-    # data preparation
-    train_file = '../data/list/train.txt'
-    val_file = '../data/list/val.txt'
     
-    ###############################################################################################################
-    # This is a bit of a hack to simplify the processing on different machines. The paths in list will be modified
-    # based on the dataset_foldername inputted by the user.
-    # Read the files from train_file and val_file
-    # Read the data from the filenames
-    train_filenames = update_filenames(train_file,args.dataset_foldername)
-    val_filenames   = update_filenames(val_file,args.dataset_foldername)
+    # Load the data from the json file
+    with open('md_list.json') as f:
+        data = json.load(f)
 
-    # Write the data in a temp file
-    with open('train_temp.txt','w') as writer:
-        writer.write('\n'.join(train_filenames))
-        writer.close()
-
-    # Write the data in a temp file
-    with open('val_temp.txt','w') as writer:
-        writer.write('\n'.join(val_filenames))
-        writer.close()
-    ###############################################################################################################
-    train_generator = ImageDataGenerator('train_temp.txt', shuffle = True,patch_size=(patch_height,patch_width),nchannels=args.nchann,radius = args.radius)
-    val_generator = ImageDataGenerator('val_temp.txt', shuffle = False,patch_size=(patch_height,patch_width),nchannels=args.nchann,radius=args.radius)
+    # Add the dataset directory to the folder containing the data
+    train_list = [os.path.join(args.dataset_foldername, s) for s in data['train']]
+    val_list   = [os.path.join(args.dataset_foldername, s) for s in data['val']]
     
-    # Delete the temporary file
-    os.remove("train_temp.txt")
-    os.remove("val_temp.txt")
-
+    # Data preparation
+    print('Preparing Training data ...')
+    train_generator = ImageDataGenerator(train_list, shuffle = True,patch_size=(patch_height,patch_width))
+    print('Preparing Validation data ...')
+    val_generator = ImageDataGenerator(val_list, shuffle = False,patch_size=(patch_height,patch_width))
+    
+    # Derive the number of patches per epoch
     train_batches_per_epoch = train_generator.data_size
     val_batches_per_epoch = val_generator.data_size
-
+    
     # TF placeholder for graph input
-    leftx = tf.compat.v1.placeholder(tf.float32, shape=[batch_size, patch_height, patch_width, args.nchann])
-    rightx_pos = tf.compat.v1.placeholder(tf.float32, shape=[batch_size, patch_height, patch_width, args.nchann])
-    rightx_neg = tf.compat.v1.placeholder(tf.float32, shape=[batch_size, patch_height, patch_width, args.nchann])
-
+    leftx = tf.compat.v1.placeholder(tf.float32, shape=[batch_size, patch_height, patch_width,1])
+    rightx_pos = tf.compat.v1.placeholder(tf.float32, shape=[batch_size, patch_height, patch_width,1])
+    rightx_neg = tf.compat.v1.placeholder(tf.float32, shape=[batch_size, patch_height, patch_width,1])
+    
+    
     # Initialize model
-    left_model = NET(leftx, input_patch_size=patch_height, batch_size=batch_size,nchannels=args.nchann)
-    right_model_pos = NET(rightx_pos, input_patch_size=patch_height, batch_size=batch_size,nchannels=args.nchann)
-    right_model_neg = NET(rightx_neg, input_patch_size=patch_height, batch_size=batch_size,nchannels=args.nchann)
-
+    left_model = NET(leftx, input_patch_size=patch_height, batch_size=batch_size)
+    right_model_pos = NET(rightx_pos, input_patch_size=patch_height, batch_size=batch_size)
+    right_model_neg = NET(rightx_neg, input_patch_size=patch_height, batch_size=batch_size)
+    
     featuresl = tf.squeeze(left_model.features, [1, 2])
     featuresr_pos = tf.squeeze(right_model_pos.features, [1, 2])
     featuresr_neg = tf.squeeze(right_model_neg.features, [1, 2])
-
+    
+    
     # Op for calculating cosine distance/dot product
     with tf.name_scope("correlation"):
         cosine_pos = tf.reduce_sum(tf.multiply(featuresl, featuresr_pos), axis=-1)
@@ -282,7 +267,7 @@ def main():
             # Reset the file pointer of the image data generator
             val_generator.reset_pointer()
             train_generator.reset_pointer()
-        
+
 if __name__ == "__main__":
     main()
         
