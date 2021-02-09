@@ -18,12 +18,12 @@ which will download and unpack all the required data files that will be used in 
 ## IARPA Multi-View Stereo 3D Mapping Challenge Dataset
 
 The IARPA Multi-View Stereo 3D Mapping Challenge Dataset which can be used during evaluation.
-Those in possession of a University of Malta IT Account can simply download this dataset from [here](https://drive.google.com/drive/folders/1kmMhlvmWa_MSMdpNyQxtH6qPQh6d9lyq?usp=sharing), unzip and
+Those in possession of a University of Malta IT Account can simply download this dataset from [here](https://drive.google.com/drive/folders/1kmMhlvmWa_MSMdpNyQxtH6qPQh6d9lyq?usp=sharing), unzip and 
 copy the Iarpa folder withing the ./Data/ folder.
 Alternatively, the GEOTIFF files can be downloaded using the following script
 
 ```console
-python data_preparation.py -d iarpa -l 18DEC15WV031000015DEC18140522-P1BS-500515572020_01_P001_________AAE_0AAAAABPABJ0.TIF 18DEC15WV031000015DEC18140544-P1BS-500515572060_01_P001_________AAE_0AAAAABPABJ0.TIF```
+python data_preparation.py -d iarpa -l 18DEC15WV031000015DEC18140522-P1BS-500515572020_01_P001_________AAE_0AAAAABPABJ0.TIF 18DEC15WV031000015DEC18140544-P1BS-500515572060_01_P001_________AAE_0AAAAABPABJ0.TIF
 ```
 
 where 18DEC15WV031000015DEC18140522-P1BS-500515572020_01_P001_________AAE_0AAAAABPABJ0.TIF and 18DEC15WV031000015DEC18140544-P1BS-500515572060_01_P001_________AAE_0AAAAABPABJ0.TIF
