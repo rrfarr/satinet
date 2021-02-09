@@ -1,5 +1,5 @@
 python3 -m venv --prompt SATINET venv
-source venv/bin/activate && \
+source venv/bin/activate 
 
 pip install --upgrade pip
 python3 -m pip install --upgrade setuptools
