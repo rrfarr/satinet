@@ -1,8 +1,38 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-    model training of MC-CNN
-"""
+#
+#  mccnn-train.py
+#  
+#  Developer Mang Chen, Reuben Farrugia
+#  
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#  
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#  MA 02110-1301, USA.
+#  
+#  This script can be used to train the MC-CNN algorithm. This will be trained
+#  on the iddlebury Stereo Vision Dataset. You can run this script using
+#
+#  -m (or --model_foldername): specifies the location where the model files
+#                     will be stored.
+#  -d (or --dataset_foldername): specifies the path where the training data
+#                     is stored.
+#  
+#  Example
+#  -------
+#
+#  ./mccnn-train.py -m Model/MC-CNN/ -d ./Data/MiddEval3/trainingH
+
 import os
 import argparse
 import numpy as np
@@ -12,8 +42,6 @@ from datetime import datetime
 from LibMccnn.model import NET
 from LibMccnn.datagenerator import ImageDataGenerator
 import json
-
-#from datageneratorXY import ImageDataGenerator
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
                                  description="training of MC-CNN")
@@ -35,11 +63,6 @@ parser.add_argument("--end_epoch", type=int, default=1000, help="end epoch for t
 
 parser.add_argument("--resume", type=str, default=None, help="path to checkpoint to resume from. \
                     if None(default), model is initialized using default methods, if = ../data/checkpoint(mbF), model is  initialized using middleberryfast methods")
-#parser.add_argument("--train_file", type=str, required=True, help="path to file containing training  \
-#                    left_image_list_file s, should be list_dir/train.txt(val.txt)")
-#parser.add_argument("--val_file", type=str, required=True, help="path to file containing validation \
-#                    left_image_list_file s, should be list_dir/train.txt(val.txt)")
-#parser.add_argument("--dataset",type=str,required=True,help="indicates the trainind data (mb or eo)")
 parser.add_argument('-m','--model_foldername',type=str,required=True, help='Output folder where the models will be stored')
 parser.add_argument('-d',"--dataset_foldername",type=str,required=False,help="folder path where the dataset is stored")
 
