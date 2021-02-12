@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
 import argparse
 import imageio
@@ -15,7 +18,7 @@ import libs2p.utils as utils
 import libs2p.rectification as rec
 from tqdm import tqdm
 from skimage import io as io #numpy version has to be ==1.15.0
-import libmccnn
+import LibMccnn
 import matplotlib.pyplot as plt
 import tensorflow as tf
 
@@ -524,7 +527,7 @@ def Ori2RecCo(xyExt,S, w, h):
 
     return rect_xy,rect_x0,rect_y0
 
-def s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,tag,method, mccnn_model_path='None'):
+def s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,data_foldername,method, mccnn_model_path='None'):
     # import warnings filter
     from warnings import simplefilter
     # ignore all future warnings
@@ -536,9 +539,9 @@ def s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,tag,m
                         [-58.589468,-34.492836], [-58.589468,-34.487061]]],
        'type': 'Polygon'}
     aoi = aoi_challenge
-    	
+
     # Derive the path of the Challenge.kml file
-    roi_kml = os.path.join('../data/mvs_dataset/groundtruth/','Challenge1.kml')
+    roi_kml = os.path.join(data_foldername, 'groundtruth','Challenge1.kml')
     
     config = {
       "out_dir": out_foldername,
@@ -592,6 +595,7 @@ def s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,tag,m
     #os.remove(os.path.join(out_foldername, 'ply.xyz'))
     #os.remove(os.path.join(out_foldername, 'tiles.txt'))
     
+    # The tag is now the folder where the imgs are stored - this was changed
     out_disp_foldername = os.path.join('./data/',tag)
 
     # Derive the homographies and additional information that is needed for registration
@@ -654,7 +658,7 @@ parser.add_argument("--mccnn_model_path", type=str, help="path to the mccnn mode
 def main():
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
     tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
-
+    
     # Get the arguments from the parse
     args = parser.parse_args()
 
@@ -662,32 +666,16 @@ def main():
     disp_min = -24
     disp_max =  25
 	
-    out_foldername = os.path.join('./results/',args.in_foldername,args.method)
+    out_foldername = os.path.join('./Results/',args.method.upper())
 
     if not os.path.exists(out_foldername):
         os.makedirs(out_foldername)
+        
+    # Specify the left and right images to be considered for stereo matching    
+    img_left_filename = os.path.join(args.in_foldername,'18DEC15WV031000015DEC18140522-P1BS-500515572020_01_P001_________AAE_0AAAAABPABJ0.TIF')
+    img_right_filename = os.path.join(args.in_foldername,'18DEC15WV031000015DEC18140544-P1BS-500515572060_01_P001_________AAE_0AAAAABPABJ0.TIF')
     
-    if args.method == 's2p' or args.method == 's2p-mccnn' or args.method == 's2p2' :
-        # Get the name of the filename
-        txt_filename = os.path.join('./data/',args.in_foldername,'pair.txt')
-        # Get the left and right geotiff filenames
-        img_left_filename, 	img_right_filename = get_geotiff_filenames(txt_filename)	
-    else:
-        # Determine the filenames of the images to be processed
-        img_left_filename  = os.path.join('./data/',args.in_foldername,'left.tif')
-        img_right_filename = os.path.join('./data/',args.in_foldername,'right.tif') 
-    
-    if args.method == 'sgbm':
-        # Compute stereo vision using sgbm algorithm
-        height_map = sgbm_stereo_vision(out_foldername,img_left_filename, img_right_filename,disp_min,disp_max,args.in_foldername)
-    elif args.method == 'mccnn':
-        # Derive the path to the model
-        mccnn_model_path = args.mccnn_model_path
-        sub_pixel_interpolation = args.sub_pixel_interpolation
-
-        # Compute stereo vision using sgbm algorithm
-        height_map = mccnn_basic_stereo_vision(img_left_filename, img_right_filename,disp_min,disp_max,args.in_foldername,mccnn_model_path,sub_pixel_interpolation)
-    elif args.method =='s2p':
+    if args.method =='s2p':
         # Compute stereo vision using the s2p framework
         height_map = s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,args.in_foldername,'sgbm')		
     elif args.method =='s2p-mccnn':
@@ -705,6 +693,7 @@ def main():
 
     # close the file
     file.close()
+    
 
 
 if __name__ == "__main__":
