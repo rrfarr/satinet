@@ -1,29 +1,24 @@
-# Create the virtual environment
-python3 -m venv --prompt SATINET venv
-source venv/bin/activate 
-
-# Upgrade the pip and setuptools
-pip install --upgrade pip
-python3 -m pip install --upgrade setuptools
-
-# Update the submodules
+# Update the submodules [start with these -JB]
 git submodule init
 git submodule update
+
+# Create the virtual environment
+python3 -m venv --prompt SATINET venv
+source venv/bin/activate
+
+# Upgrade the pip and setuptools
+# [these should not be necessary as you're installing requirements -JB]
+#pip install --upgrade pip
+#python3 -m pip install --upgrade setuptools
 
 # Install the required packages
 pip install -r requirements.txt
 
 # Installing the third party homography
-mkdir temp
-cd temp
-wget https://github.com/cmla/homography/archive/89eeb4401c51f0e67beac05536fc2fe595065406.zip
-unzip 89eeb4401c51f0e67beac05536fc2fe595065406.zip
-cd homography-89eeb4401c51f0e67beac05536fc2fe595065406
-make
-BIN="/bin"
-mv homography "$VIRTUAL_ENV$BIN"
-cd ../..
-rm -r temp
+make -C homography
+ln -sf $(readlink -f homography/homography) "$VIRTUAL_ENV/bin/"
+
+# All done
 echo "The envoronment was successfully installed!"
 
 

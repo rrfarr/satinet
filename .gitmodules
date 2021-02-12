@@ -4,3 +4,6 @@
 [submodule "s2p"]
 	path = s2p
 	url = ssh://git@dsrg-ict.research.um.edu.mt:2222/rrfarr/s2p.git
+[submodule "homography"]
+	path = homography
+	url = https://github.com/cmla/homography.git
