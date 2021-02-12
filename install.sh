@@ -6,6 +6,10 @@ python3 -m pip install --upgrade setuptools
 
 pip install -r requirements.txt
 
+# Update the submodules
+git submodule init
+git submodule update
+
 #pip install progressist==0.1.0
 #pip install tensorflow==1.14.0
 #pip install numpy==1.16.4
