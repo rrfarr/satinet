@@ -13,6 +13,19 @@ git submodule update
 # Install the required packages
 pip install -r requirements.txt
 
+# Installing the third party homography
+mkdir temp
+cd temp
+wget https://github.com/cmla/homography/archive/89eeb4401c51f0e67beac05536fc2fe595065406.zip
+unzip 89eeb4401c51f0e67beac05536fc2fe595065406.zip
+cd homography-89eeb4401c51f0e67beac05536fc2fe595065406
+make
+BIN="/bin"
+mv homography "$VIRTUAL_ENV$BIN"
+cd ../..
+rm -r temp
+echo "The envoronment was successfully installed!"
+
 
 #pip install progressist==0.1.0
 #pip install tensorflow==1.14.0
