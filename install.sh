@@ -1,14 +1,18 @@
+# Create the virtual environment
 python3 -m venv --prompt SATINET venv
 source venv/bin/activate 
 
+# Upgrade the pip and setuptools
 pip install --upgrade pip
 python3 -m pip install --upgrade setuptools
-
-pip install -r requirements.txt
 
 # Update the submodules
 git submodule init
 git submodule update
+
+# Install the required packages
+pip install -r requirements.txt
+
 
 #pip install progressist==0.1.0
 #pip install tensorflow==1.14.0
