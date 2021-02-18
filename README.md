@@ -34,5 +34,4 @@ deactivate
 5.  Evaluation
 
 # TODO List
-1. The ad and numba versions were not specified 
 2. I need to zip the data (GEOTIFF, kml and LIDAR) on Google Drive and add sharable link from the Documentation
