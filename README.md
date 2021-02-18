@@ -34,6 +34,5 @@ deactivate
 5.  Evaluation
 
 # TODO List
-
-1. I need to fork to the s2p library from https://github.com/cmla/s2p.git - I need Johann's help on setting this up so that I can edit changes to the forked s2p repository. 
-3. I need to zip the data (GEOTIFF, kml and LIDAR) on Google Drive and add sharable link from the Documentation
+1. The ad and numba versions were not specified 
+2. I need to zip the data (GEOTIFF, kml and LIDAR) on Google Drive and add sharable link from the Documentation
