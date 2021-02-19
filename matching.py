@@ -565,8 +565,8 @@ def s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,data_
     s2p.main(config)
     
     # Read data from the kml file
-    print('Read data from the kml file')
-    kmlCorners = readkml(roi_kml)
+    #print('Read data from the kml file')
+    #kmlCorners = readkml(roi_kml)
     
     # Derive the ground truth path
     #print('Derive the truth path')
@@ -577,11 +577,11 @@ def s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,data_
     #truthGrid = createTruthGrid(truthPoints)
 
     # Derive the solution path
-    print('Derive the solution path')
-    solutionPath = os.path.join(out_foldername, 'ply.xyz')
+    #print('Derive the solution path')
+    #solutionPath = os.path.join(out_foldername, 'ply.xyz')
     # Load the solution points
-    print('Load the solution points')
-    solutionPoints = loadPoints(solutionPath, kmlCorners, False)
+    #print('Load the solution points')
+    #solutionPoints = loadPoints(solutionPath, kmlCorners, False)
     
     # Clean all the folder
     #shutil.rmtree(os.path.join(out_foldername, 'temp'))
@@ -596,49 +596,49 @@ def s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,data_
     #os.remove(os.path.join(out_foldername, 'tiles.txt'))
     
     # The tag is now the folder where the imgs are stored - this was changed
-    out_disp_foldername = os.path.join('./data/',tag)
+    #out_disp_foldername = os.path.join('./data/',tag)
 
     # Derive the homographies and additional information that is needed for registration
-    metadata_filename = os.path.join(out_disp_foldername, 'metadata.pkl')
-    f = open(metadata_filename, 'rb')
-    S_left = pickle.load(f)
-    S_right = pickle.load(f)
-    w = pickle.load(f)
-    h = pickle.load(f)
-    P_left = pickle.load(f)
-    P_right = pickle.load(f)
-    f.close()
+    #metadata_filename = os.path.join(out_disp_foldername, 'metadata.pkl')
+    #f = open(metadata_filename, 'rb')
+    #S_left = pickle.load(f)
+    #S_right = pickle.load(f)
+    #w = pickle.load(f)
+    #h = pickle.load(f)
+    #P_left = pickle.load(f)
+    #P_right = pickle.load(f)
+    #f.close()
     
-    print('Convert solution points to lon, lat and height ...')
+    #print('Convert solution points to lon, lat and height ...')
     # Derive the lon lat and heights from file
-    lon, lat, height_soln = get_lon_lat(solutionPoints,aoi)
+    #lon, lat, height_soln = get_lon_lat(solutionPoints,aoi)
     
     # Get the rpc from the left image
-    rpc = utils.rpc_from_geotiff(img_left_filename)
+    #rpc = utils.rpc_from_geotiff(img_left_filename)
     
     # Project the lon and lat values on the image grid
-    x, y = rpc.projection(lon, lat, height_soln)
-    xy = np.vstack((x, y)).T
+    #x, y = rpc.projection(lon, lat, height_soln)
+    #xy = np.vstack((x, y)).T
     
     # Initialize a column vector of ones
-    xyExt = np.ones(solutionPoints.shape[0]).reshape(-1,1)
+    #xyExt = np.ones(solutionPoints.shape[0]).reshape(-1,1)
     
     # Derive the  points
-    Points = np.hstack((xy,xyExt))
+    #Points = np.hstack((xy,xyExt))
 
     #print(" rect to left image coordinates...")
-    rect_xy,_,_ = Ori2RecCo(Points,S_left, w, h)
+    #rect_xy,_,_ = Ori2RecCo(Points,S_left, w, h)
 
     # Concatenate the recrified xy coordinates on the left image with the heights
-    heightList = np.hstack((rect_xy, height_soln.reshape(-1,1)))
+    #heightList = np.hstack((rect_xy, height_soln.reshape(-1,1)))
     
     # Derive the height map
-    height, mask = createGrid_height(heightList,w,h)
+    #height, mask = createGrid_height(heightList,w,h)
 
     # Set the disparity that are not defined as nan
-    height[~mask] = np.nan
+    #height[~mask] = np.nan
 
-    return height
+    #return height
 
 def get_geotiff_filenames(txt_filename):
     file = open(txt_filename,"r")
@@ -661,10 +661,11 @@ def main():
     
     # Get the arguments from the parse
     args = parser.parse_args()
-
+    if args.method == 's2p-mccnn' and args.mccnn_model_path is None:
+        parser.error("The path to the model needs to be defined using --mccnn_model_path")
     # Use the same disparity map range as done in the xyz2disp.py script
-    disp_min = -24
-    disp_max =  25
+    #disp_min = -24
+    #disp_max =  25
 	
     out_foldername = os.path.join('./Results/',args.method.upper())
 
@@ -677,22 +678,24 @@ def main():
     
     if args.method =='s2p':
         # Compute stereo vision using the s2p framework
-        height_map = s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,args.in_foldername,'sgbm')		
+        # height_map = s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,args.in_foldername,'sgbm')		
+        s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,args.in_foldername,'sgbm')		
     elif args.method =='s2p-mccnn':
         # Compute stereo vision using the s2p framework
         mccnn_model_path = args.mccnn_model_path
-        height_map = s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,args.in_foldername,'mccnn_basic',mccnn_model_path)		
+        #height_map = s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,args.in_foldername,'mccnn_basic',mccnn_model_path)		
+        s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,args.in_foldername,'mccnn_basic',mccnn_model_path)		
         
     # Derive the disp filename
-    height_filename = os.path.join(out_foldername, 'height.pkl')
+    #height_filename = os.path.join(out_foldername, 'height.pkl')
         
-    file = open(height_filename, 'wb')
+    #file = open(height_filename, 'wb')
  
     # dump information to that file
-    pickle.dump(height_map, file)
+    #pickle.dump(height_map, file)
 
     # close the file
-    file.close()
+    #file.close()
     
 
 
