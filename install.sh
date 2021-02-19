@@ -28,14 +28,14 @@ pip install rpcm==1.4.7
 pip install bs4==0.0.1
 pip install ransac==1.0.2
 
-pip install s2p
+pip install s2p==1.0b23
 
 pip install silx==0.13.2
 pip install ad==1.3.2
 pip install ipywidgets==7.5.1
 pip install numba==0.52.0
 
-
+pip install progressist==0.1.0
 
 
 
