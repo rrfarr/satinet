@@ -49,11 +49,13 @@ pip install progressist==0.1.0
 make -C homography
 ln -sf $(readlink -f homography/homography) "$VIRTUAL_ENV/bin/"
 
+# Installing the third party sgbm
+make -C s2p/3rdparty/sgbm/
+
 # All done
 echo "The envoronment was successfully installed!"
+ln -sf $(readlink -f s2p/3rdparty/sgbm/sgbm) "$VIRTUAL_ENV/bin/"
 
-
-#pip install progressist==0.1.0
 #pip install tensorflow==1.14.0
 #pip install numpy==1.16.4
 #pip install opencv-contrib-python==3.4.2.16
