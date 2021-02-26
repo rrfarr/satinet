@@ -524,9 +524,6 @@ def showGrid(truthGrid,solutionPostImg,dz,completenessImg,completeness,rms,media
 
     #plt.show()
 
-#solutionPath = './data/Challenge1_Lidar.xyz'
-#solutionFile = 'ply.xyz'
-#solutionPath = os.path.join('../s2p_output/output_pair/',solutionFile)
 fast_registration = True
 registration_method = 'rmse'
 
@@ -612,8 +609,8 @@ def main():
     print('{} registering ...'.format(datetime.now()))
     file1.write('{} registering ...\n'.format(datetime.now()))
     
+    # Set the registration offset
     registrationOffset = (0.0, -1.5000000596046448, 0.8859839707876667)
-    #registrationOffset = registerFast(solutionPoints, truthGrid)
     print('{} register to {}'.format(datetime.now(),registrationOffset))
     file1.write('{} register to {}\n'.format(datetime.now(),registrationOffset))
 
