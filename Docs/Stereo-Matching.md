@@ -5,10 +5,9 @@ Digital Elevation Model (DEM) from two or more satellite images.
 One can run the matching script using the following command
 
 ```console
-./mccnn-train.py -m Model/MC-CNN/ -d ./Data/MiddEval3/trainingH/
+./matching.py  --in_foldername ./Data/Iarpa --method s2p-mccnn --mccnn_model_path ./Model/MC-CNN/
 ```
 
-The attribute **m** specifies the folder where the model will be stored while the attribute
-**d** specifies the directory containing the training data.
-The list of training files is loaded from the md_list.json file.
+This script takes three command line inputs. The **in_foldername** argument specifies the foldername where the GEOTIFF images are stored.
+The **method** argument specifies the stereo-matching method used.
 
