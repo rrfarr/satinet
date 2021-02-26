@@ -8,6 +8,6 @@ One can run the matching script using the following command
 ./matching.py  --in_foldername ./Data/Iarpa --method s2p-mccnn --mccnn_model_path ./Model/MC-CNN/
 ```
 
-This script takes three command line inputs. The **in_foldername** argument specifies the foldername where the GEOTIFF images are stored.
-The **method** argument specifies the stereo-matching method used.
+This script takes three command line inputs. The *in_foldername* argument specifies the foldername where the GEOTIFF images are stored.
+The *method* argument specifies the stereo-matching method used.
 
