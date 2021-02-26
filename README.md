@@ -30,7 +30,7 @@ deactivate
 1.  [Data Preparation](./Docs/Data-Preparation.md)
 2.  [Training the MC-CNN Network](./Docs/Training-MCCNN.md)
 3.  Training the LAF-NET Network
-4.  Stereo Matching
+4.  [Stereo Matching](./Docs/Stereo-Matching.md)
 5.  Evaluation
 
 # TODO List
