@@ -16,7 +16,7 @@ done using the following command
 ./install.sh
 ```
 This will install all the packages within the requirements.txt file.
-The virtual environment can then be activated using
+In case the virtual environment is not activated, you can do so by running the following command
 
 ```console
 source venv/bin/activate
@@ -32,6 +32,3 @@ deactivate
 3.  Training the LAF-NET Network
 4.  [Stereo Matching](./Docs/Stereo-Matching.md)
 5.  Evaluation
-
-# TODO List
-2. I need to zip the data (GEOTIFF, kml and LIDAR) on Google Drive and add sharable link from the Documentation
