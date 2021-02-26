@@ -1,13 +1,8 @@
-# Training MC-CNN
+# Stereo Matching
 
-The MC-CNN algorithm was trained on the Middelbury Stereo Vision Dataset. Please
-make sure to download the dataset at half resolution using the command
-
-```console
-python data_preparation.py -d md
-```
-
-before proceeding. One can run train the MC-CNN network using the following command
+This script will use the [S2P processing pipeline](https://github.com/MISS3D/s2p) developed by CNES which rectifies, matches and derives the 
+Digital Elevation Model (DEM) from two or more satellite images.
+One can run the matching script using the following command
 
 ```console
 ./mccnn-train.py -m Model/MC-CNN/ -d ./Data/MiddEval3/trainingH/
