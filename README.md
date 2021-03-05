@@ -13,10 +13,11 @@ The table below compares our approach against the standard S2P pipeline. Our fir
 S2P-SGBM by 3% in terms of completeness. The addition of a median filter to smoothen the cost volume slices (S2PMCCNN-Filt) provides an additional gain of 1.3%. Finally, using LAF-Net to fuse the left and right disparities (S2PMCCNN-
 Filt-LAFNet) results in the best performance, outperforming S2P-SGBM by 4.5%.
 
-| Syntax      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
+| Method      | Completeness | RMSE | Median Error |
+| ----------- | ----------- | ----------- | ----------- |
+| S2P-SGBM      | 0.6683       | 3.2265       | 1.0152       |
+| S2P-MCCNN-Filt   | 0.7131        | 3.0025       | **0.9391**       |
+| S2P-MCCNN-Filt-LAFNet   | **0.7134**        | **2.9974**       | 0.9431       |
 
 # Installation
 
