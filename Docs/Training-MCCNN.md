@@ -15,5 +15,5 @@ before proceeding. One can run train the MC-CNN network using the following comm
 
 The attribute *m* specifies the folder where the model will be stored while the attribute
 *d* specifies the directory containing the training data.
-The list of training files is loaded from the md_list.json file.
+The list of training files is loaded from the *md_list.json* file.
 
