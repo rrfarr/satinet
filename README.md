@@ -26,6 +26,10 @@ and can be deactivated using
 ```console
 deactivate
 ```
+
+This code was tested on a Ubuntu 18.04 operating system using Python 3.6, Tensorflow 1.14.0 and pytorch 1.8.0.
+A more complete list of packages used can be found in the install.sh script.
+
 # Documentation
 1.  [Data Preparation](./Docs/Data-Preparation.md)
 2.  [Training the MC-CNN Network](./Docs/Training-MCCNN.md)
