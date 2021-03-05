@@ -7,6 +7,17 @@ depicted in the figure below.
 
 ![Diagram of the proposed method](./Figures/diagram.png)*Diagram of the stereo matching method proposed by the SATINET project*
 
+In order to assess the performance of the proposed pipeline, we selected a subset of the well-known IARPA challenge dataset. We use two WorldView-3 images acquired on 18 December 2015 on 
+the same track. The proposed stereo matching process was integrated within the S2P pipeline which, like most stereoscopic DEM methods, normally uses SGBM for stereo matching. 
+The table below compares our approach against the standard S2P pipeline. Our first contribution is the S2P-MCCNN method, which uses MC-CNN for stereo matching, and outperforms 
+S2P-SGBM by 3% in terms of completeness. The addition of a median filter to smoothen the cost volume slices (S2PMCCNN-Filt) provides an additional gain of 1.3%. Finally, using LAF-Net to fuse the left and right disparities (S2PMCCNN-
+Filt-LAFNet) results in the best performance, outperforming S2P-SGBM by 4.5%.
+
+| Syntax      | Description |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |
+
 # Installation
 
 To execute the software you need to install the virtual environment. This can be easily
