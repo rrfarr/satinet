@@ -73,6 +73,7 @@ parser.add_argument("--in_foldername", type=str, required=True, help="Input fold
 parser.add_argument("--method", type=str, required=True, help="Method used to compute the stereo matching. s2p or s2p-mccnn")
 # Note: s2p-mccnn also incorporates the median filtering of the cost volume - so this is effectively S2P-MCCNN-Filt as per publication
 parser.add_argument("--mccnn_model_path", type=str, help="path to the mccnn model.")
+parser.add_argument("--laf_model_path", type=str, help="path to the lafnet model.")
 
 def main():
     #CUDA_VISIBLE_DEVICES=""
@@ -105,7 +106,7 @@ def main():
     elif args.method == 's2p-mccnn-laf':
         # Compute the stereo vision
         mccnn_model_path = args.mccnn_model_path
-        laf_model_path = './LAF/saved_models/'
+        laf_model_path =  args.laf_model_path
         s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,args.in_foldername, 'mccnn_laf',mccnn_model_path,laf_model_path)
 
 if __name__ == "__main__":
