@@ -38,13 +38,7 @@ pip install numba==0.52.0
 pip install progressist==0.1.0
 pip install torch==1.8.0
 pip install torchvision==0.9.0
-
-
-# NUMPY NEEDS TO BE INSTALLED BEFORE NUMBA
-#pip install numpy==1.16.4
-
-# Install the required packages
-#pip install -r requirements.txt
+pip install googledrivedownloade==0.4
 
 # Installing the third party homography
 make -C homography
@@ -57,8 +51,5 @@ make -C s2p/3rdparty/sgbm/
 echo "The envoronment was successfully installed!"
 ln -sf $(readlink -f s2p/3rdparty/sgbm/sgbm) "$VIRTUAL_ENV/bin/"
 
-#pip install tensorflow==1.14.0
-#pip install numpy==1.16.4
-#pip install opencv-contrib-python==3.4.2.16
-#pip install opencv-python==3.4.2.16
-#pip install tqdm==4.50.0
+# Download the pretrained models
+./download_pretrained_models.py
