@@ -11,7 +11,7 @@ source venv/bin/activate
 pip install --upgrade pip
 
 
-pip install tensorflow-gpu==1.14.0
+pip install tensorflow==1.14.0
 pip install numpy==1.16.4
 pip install opencv-contrib-python==3.4.2.16
 pip install opencv-python==3.4.2.16
@@ -36,7 +36,8 @@ pip install ipywidgets==7.5.1
 pip install numba==0.52.0
 
 pip install progressist==0.1.0
-
+pip install torch==1.8.0
+pip install torchvision==0.9.0
 
 
 # NUMPY NEEDS TO BE INSTALLED BEFORE NUMBA
