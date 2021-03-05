@@ -7,3 +7,6 @@
 [submodule "homography"]
 	path = homography
 	url = ssh://git@dsrg-ict.research.um.edu.mt:2222/jabriffa/homography.git
+[submodule "LAF"]
+	path = LAF
+	url = ssh://git@dsrg-ict.research.um.edu.mt:2222/rrfarr/LAF.git
