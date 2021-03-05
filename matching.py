@@ -75,6 +75,7 @@ parser.add_argument("--method", type=str, required=True, help="Method used to co
 parser.add_argument("--mccnn_model_path", type=str, help="path to the mccnn model.")
 
 def main():
+    #CUDA_VISIBLE_DEVICES=""
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
     tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
     
