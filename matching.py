@@ -28,7 +28,7 @@ from libs2p import pointing_accuracy as pointing_accuracy
 ############################################################################################################################
 # S2P Processing Pipeline: This script is used to call the S2P Processing pipeline
 ############################################################################################################################
-def s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,data_foldername,method, mccnn_model_path='None'):
+def s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,data_foldername,method, mccnn_model_path='None',laf_model_path='None'):
     # import warnings filter
     from warnings import simplefilter
     # ignore all future warnings
@@ -60,6 +60,7 @@ def s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,data_
       "matching_algorithm": method,
       "temporary_dir": os.path.join(out_foldername,'temp'),
       "mccnn_model_dir": mccnn_model_path,
+      'laf_model_dir': laf_model_path,
       'max_processes': None
     }
     # Compute the s2p method to compute the disparity
@@ -100,6 +101,11 @@ def main():
         mccnn_model_path = args.mccnn_model_path
         #height_map = s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,args.in_foldername,'mccnn_basic',mccnn_model_path)		
         s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,args.in_foldername,'mccnn_basic',mccnn_model_path)		
+    elif args.method == 's2p-mccnn-laf':
+        # Compute the stereo vision
+        mccnn_model_path = args.mccnn_model_path
+        laf_model_path = './LAF/saved_models/'
+        s2p_stereo_vision(out_foldername,img_left_filename, img_right_filename,args.in_foldername, 'mccnn_laf',mccnn_model_path,laf_model_path)
 
 if __name__ == "__main__":
     main()
