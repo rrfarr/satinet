@@ -38,7 +38,7 @@ pip install numba==0.52.0
 pip install progressist==0.1.0
 pip install torch==1.8.0
 pip install torchvision==0.9.0
-pip install googledrivedownloade==0.4
+pip install googledrivedownloader==0.4
 
 # Installing the third party homography
 make -C homography
