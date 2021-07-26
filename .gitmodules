@@ -3,10 +3,10 @@
 	url = git@github.com:um-dsrg/MC-CNN-python.git
 [submodule "s2p"]
 	path = s2p
-	url = ssh://git@dsrg-ict.research.um.edu.mt:2222/rrfarr/s2p.git
+	url = git@github.com:um-dsrg/s2p.git
 [submodule "homography"]
 	path = homography
-	url = ssh://git@dsrg-ict.research.um.edu.mt:2222/jabriffa/homography.git
+	url = git@github.com:um-dsrg/homography.git
 [submodule "LAF"]
 	path = LAF
 	url = git@github.com:um-dsrg/LAF.git
