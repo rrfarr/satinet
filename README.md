@@ -16,9 +16,7 @@ Filt-LAFNet) results in the best performance, outperforming S2P-SGBM by 4.5%.
 | Method      | Completeness | RMSE | Median Error |
 | ----------- | ----------- | ----------- | ----------- |
 | S2P-SGBM      | 0.6683       | 3.2265       | 1.0152       |
-| S2P-MGM      | 0.7367      | 2.8018       | 0.9613       |
-| S2P-MCCNN-Filt   | 0.7131        | 3.0025       | **0.9391**       |
-| S2P-MCCNN-Filt-LAFNet   | **0.7134**        | **2.9974**       | 0.9431       |
+| S2P-MCCNN-Filt   | **0.7131**        | **3.0025**       | **0.9391**       |
 
 # Installation
 
@@ -39,6 +37,12 @@ and can be deactivated using
 ```console
 deactivate
 ```
+If you are having an issue with the s2p installation please use the following commands
+```console
+sudo apt install libgeographic-dev
+sudo apt install build-essential geographiclib-tools libfftw3-dev libgeotiff-dev libtiff5-dev
+```
+
 
 This code was tested on a Ubuntu 18.04 operating system using Python 3.6, Tensorflow 1.14.0 and pytorch 1.8.0.
 A more complete list of packages used can be found in the install.sh script.
