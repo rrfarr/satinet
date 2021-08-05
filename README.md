@@ -39,6 +39,12 @@ and can be deactivated using
 ```console
 deactivate
 ```
+If you are having an issue with the s2p installation please use the following commands
+```console
+sudo apt install libgeographic-dev
+sudo apt install build-essential geographiclib-tools libfftw3-dev libgeotiff-dev libtiff5-dev
+```
+
 
 This code was tested on a Ubuntu 18.04 operating system using Python 3.6, Tensorflow 1.14.0 and pytorch 1.8.0.
 A more complete list of packages used can be found in the install.sh script.
