@@ -16,7 +16,7 @@ Filt-LAFNet) results in the best performance, outperforming S2P-SGBM by 4.5%.
 | Method      | Completeness | RMSE | Median Error |
 | ----------- | ----------- | ----------- | ----------- |
 | S2P-SGBM      | 0.6683       | 3.2265       | 1.0152       |
-| S2P-MCCNN-Filt   | 0.7131        | 3.0025       | **0.9391**       |
+| S2P-MCCNN-Filt   | **0.7131**        | **3.0025**       | **0.9391**       |
 
 # Installation
 
